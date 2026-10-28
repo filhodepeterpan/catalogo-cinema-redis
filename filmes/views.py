@@ -24,7 +24,7 @@ def ler_json(request):
         return None, erro("JSON inválido", 400)
     if not isinstance(dados, dict):
         return None, erro("O corpo da requisição deve ser um objeto JSON", 400)
-    dados.pop("pk", None)  # o ID é sempre gerado/controlado pela API
+    dados.pop("pk", None)
     return dados, None
 
 
@@ -41,12 +41,11 @@ def filmes(request):
     if request.method == "GET":
         filtros = []
         genero = request.GET.get("genero")
-        # Busca por título: só letras, números e espaços (evita erro de sintaxe no Redis)
         busca = re.sub(r"[^\w\s]", " ", request.GET.get("busca", "")).strip()
         if genero:
             filtros.append(Filme.genero == genero)
         if busca:
-            filtros.append(Filme.titulo % f"{busca}*")  # prefixo: "mei" acha "Meia-Noite"
+            filtros.append(Filme.titulo % f"{busca}*") 
         resultado = Filme.find(*filtros).all()
         return JsonResponse([f.model_dump() for f in resultado], safe=False)
 
