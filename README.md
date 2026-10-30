@@ -2,7 +2,7 @@
 
 API REST em **Python (Django)** para gerenciar o catálogo de filmes de um cinema, com banco de dados **Redis** (via **Redis OM**). Permite cadastrar, listar, consultar, atualizar e excluir filmes (CRUD completo), com busca por título e filtro por gênero.
 
-> O frontend (HTML, CSS e JS) fica em um repositório separado e consome esta API.
+> O frontend (HTML, CSS e JS) fica no diretório `frontend/` na raiz do projeto.
 
 ## Tecnologias
 
