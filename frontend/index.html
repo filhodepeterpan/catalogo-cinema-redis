@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cine Rua – Em cartaz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Michroma&family=Tilt+Neon&family=Chakra+Petch:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="letreiro"><div><h1>Cine Rua</h1><p>Sessões de hoje, na tela grande</p></div></header>
+<main>
+  <section class="filtros" aria-label="Filtros">
+    <input type="search" id="busca" placeholder="Buscar por título" aria-label="Buscar por título">
+    <select id="genero" aria-label="Gênero"><option value="">Todos os gêneros</option></select>
+    <div class="abas" role="group" aria-label="Status do filme">
+      <button class="aba ativa" data-status="">Todos</button>
+      <button class="aba" data-status="em_cartaz">Em cartaz</button>
+      <button class="aba" data-status="em_breve">Em breve</button>
+      <button class="aba" data-status="fora_de_cartaz">Fora de cartaz</button>
+    </div>
+    <button id="btn-novo" class="primario">Cadastrar filme</button>
+  </section>
+  <p id="aviso" role="status"></p>
+  <section id="lista" class="grade" aria-live="polite"></section>
+</main>
+
+<template id="tpl-card">
+  <article class="ingresso">
+    <div class="cartaz"><img alt=""><span class="selo"></span></div>
+    <div class="info">
+      <h2 class="titulo"></h2>
+      <p class="meta"><span class="classe"></span><span class="detalhes"></span></p>
+      <p class="dir"></p>
+      <p class="sinopse"></p>
+    </div>
+    <div class="canhoto">
+      <ul class="sessoes"></ul>
+      <p class="lugares"></p>
+      <div class="acoes"><button class="editar">Editar</button><button class="excluir">Excluir</button></div>
+    </div>
+  </article>
+</template>
+
+<dialog id="modal" aria-labelledby="modal-titulo">
+  <h2 id="modal-titulo">Cadastrar filme</h2>
+  <form id="form" novalidate>
+    <label class="largo">Título <input name="titulo" required></label>
+    <label class="largo">Diretores <input name="diretores" placeholder="Separe por vírgula" required></label>
+    <label>Ano de lançamento <input name="ano_lancamento" type="number" min="1888" max="2100" required></label>
+    <label>Duração (minutos) <input name="duracao_minutos" type="number" min="1" required></label>
+    <label>Gênero <input name="genero" required></label>
+    <label>Classificação <select name="classificacao"><option>Livre</option><option>10</option><option>12</option><option>14</option><option>16</option><option>18</option></select></label>
+    <label>Horários <input name="horarios" placeholder="13h, 18h, 21h"></label>
+    <label>Salas <input name="salas" placeholder="5, 6"></label>
+    <label>Lugares disponíveis <input name="lugares" type="number" min="0" required></label>
+    <label>Status <select name="status"><option value="em_cartaz">Em cartaz</option><option value="em_breve">Em breve</option><option value="fora_de_cartaz">Fora de cartaz</option></select></label>
+    <label class="largo">Cartaz (URL da imagem) <input name="cartaz" placeholder="Opcional"></label>
+    <label class="largo">Sinopse <textarea name="sinopse" rows="3"></textarea></label>
+    <p id="erros" class="largo erros" role="alert"></p>
+    <div class="rodape largo">
+      <button type="button" id="cancelar">Cancelar</button>
+      <button type="submit" id="salvar" class="primario">Cadastrar filme</button>
+    </div>
+  </form>
+</dialog>
+
+<script src="script.js"></script>
+</body>
+</html>
