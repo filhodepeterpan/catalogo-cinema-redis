@@ -132,5 +132,5 @@ MAILERS = {
 # CORS
 CORS_ALLOWED_ORIGINS = os.getenv(
     'CORS_ALLOWED_ORIGINS', 
-    'http://localhost:5500,http://127.0.0.1:5500,http://localhost:3000'
+    'http://localhost:5500,http://127.0.0.1:5500,http://localhost:3000,http://localhost:6379'
 ).split(',')
